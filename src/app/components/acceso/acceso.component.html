@@ -1,0 +1,41 @@
+<div class="login-container">
+  <img class="img-back" src="../../../assets/img/students.jpg" alt="">
+  <form [formGroup]="accessForm">
+    <i class="fa-solid fa-school icon-school"></i>
+    <h3 class="app-name">{{appName}}</h3>
+    <input
+      [class.error]="fieldError('username')"
+      type="text"
+      name="username"
+      id="username"
+      placeholder="Email"
+      formControlName="username"
+    >
+    <sub
+      class="error-text"
+      [class.hidden]="messageError('username')">
+        Ingrese un email valido
+    </sub>
+    <input
+      [class.error]="fieldError('password')"
+      type="password"
+      name="password"
+      id="password"
+      placeholder="Password"
+      formControlName="password">
+    <sub
+    class="error-text"
+    [class.hidden]="messageError('password')">
+      Contraseña debe tener mínimo 8 caracteres
+    </sub>
+    <input
+      type="submit"
+      (click)="validateUser()"
+      value="Ingresar"/>
+    <sub
+      class="error-text" *ngIf="credentialsError">
+      {{errorMsg}}
+    </sub>
+  </form>
+</div>
+

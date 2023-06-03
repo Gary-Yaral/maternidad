@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { urlApi } from 'src/app/constants';
 import { ApiRestService } from 'src/app/services/api-rest.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -13,7 +14,7 @@ export class AccesoComponent {
   credentialsError: boolean = false
   errorMsg = ""
   appName = "Acceder"
-  urlAccess = "http://localhost:3000/acceso"
+  urlAccess = `http://localhost:3000/maternidad/acceso/auth`
   emailRegEx = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
   constructor(
     private router: Router,
@@ -28,11 +29,11 @@ export class AccesoComponent {
   }
 
   accessForm = new FormGroup({
-    username: new FormControl('', [
+    email: new FormControl('', [
       Validators.pattern(this.emailRegEx),
       Validators.required
     ]),
-    password: new FormControl('', [
+    clave: new FormControl('', [
       Validators.minLength(8),
       Validators.required
     ])
@@ -40,16 +41,10 @@ export class AccesoComponent {
 
   validateUser() {
     if(this.accessForm.valid) {
-      const { username, password } = this.accessForm.value
-      const data = {
-        username: username ? username : "",
-        password: password ? password : ""
-      }
-
-      this.apiRestService.doPost(this.urlAccess, data).subscribe((result: any) => {
-        if(result.access) {
+      this.apiRestService.doPost(this.urlAccess, this.accessForm.value).subscribe((result: any) => {
+        if(result.acceso) {
           this.storageService.setStorage('session', result.data)
-          this.router.navigate(['/dashboard'])
+          this.router.navigate(['/sistema'])
         } else {
           this.errorMsg = result.error
           this.credentialsError = true

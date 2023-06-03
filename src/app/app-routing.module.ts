@@ -8,6 +8,8 @@ import { DoctoresComponent } from './components/doctores/doctores.component';
 import { HabitacionesComponent } from './components/habitaciones/habitaciones.component';
 import { AccesoComponent } from './components/acceso/acceso.component';
 import { SistemaComponent } from './components/sistema/sistema.component';
+import { AccesoGuard } from './guards/acceso.guard';
+import { SistemaGuard } from './guards/sistema.guard';
 
 const routes: Routes = [
   {
@@ -17,11 +19,14 @@ const routes: Routes = [
   },
   {
     path: "acceso",
-    component: AccesoComponent
+    component: AccesoComponent,
+    canActivate: [SistemaGuard]
   },
   {
     path:"sistema", component: SistemaComponent,
-    canActivate: [],
+    canActivate: [
+      AccesoGuard
+    ],
     children: [
       {
         path: "",

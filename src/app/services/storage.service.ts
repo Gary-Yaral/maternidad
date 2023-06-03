@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class StorageService {
   storageKeys: any = {
-    session: "maternida?user"
+    session: "maternidad?data"
   }
   constructor() { }
 

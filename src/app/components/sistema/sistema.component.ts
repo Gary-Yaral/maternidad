@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-sistema',
@@ -8,9 +9,13 @@ import { Router } from '@angular/router';
 })
 export class SistemaComponent {
   constructor(
-    private router: Router
+    private router: Router,
+    private storageService: StorageService
   ){}
   salir() {
-    this.router.navigate(["/acceso"])
+    console.log("click");
+
+    this.storageService.cleanStorage()
+    this.router.navigate(["acceso"])
   }
 }

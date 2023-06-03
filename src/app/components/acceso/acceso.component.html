@@ -1,31 +1,30 @@
 <div class="login-container">
-  <img class="img-back" src="../../../assets/img/students.jpg" alt="">
   <form [formGroup]="accessForm">
     <i class="fa-solid fa-school icon-school"></i>
     <h3 class="app-name">{{appName}}</h3>
     <input
-      [class.error]="fieldError('username')"
+      [class.error]="fieldError('email')"
       type="text"
-      name="username"
-      id="username"
+      name="email"
+      id="email"
       placeholder="Email"
-      formControlName="username"
+      formControlName="email"
     >
     <sub
       class="error-text"
-      [class.hidden]="messageError('username')">
+      [class.hidden]="messageError('email')">
         Ingrese un email valido
     </sub>
     <input
-      [class.error]="fieldError('password')"
+      [class.error]="fieldError('clave')"
       type="password"
-      name="password"
-      id="password"
-      placeholder="Password"
-      formControlName="password">
+      name="clave"
+      id="clave"
+      placeholder="Contraseñana"
+      formControlName="clave">
     <sub
     class="error-text"
-    [class.hidden]="messageError('password')">
+    [class.hidden]="messageError('clave')">
       Contraseña debe tener mínimo 8 caracteres
     </sub>
     <input

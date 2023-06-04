@@ -134,6 +134,7 @@ export class HabitacionesComponent {
     if(this.habitacion.valid) {
       this.apiRestService.doPost(this.urlHabitaciones, this.habitacion.value).subscribe((response: any) => {
         if(response._id) {
+          this.resetearForm()
           this.obtenerHabitaciones()
           Swal.fire("OK", "Habitacion creada correctamente", "success")
         } else {

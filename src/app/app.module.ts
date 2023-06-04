@@ -12,6 +12,7 @@ import { PartosComponent } from './components/partos/partos.component';
 import { RecienNacidosComponent } from './components/recien-nacidos/recien-nacidos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SistemaComponent } from './components/sistema/sistema.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SistemaComponent } from './components/sistema/sistema.component';
     HabitacionesComponent,
     PartosComponent,
     RecienNacidosComponent,
-    SistemaComponent
+    SistemaComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

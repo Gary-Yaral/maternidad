@@ -94,6 +94,8 @@ export class ConsultasComponent implements OnInit {
       const path = `${this.urlConsultas}/${this.consultaSeleccionada}`
       this.apiRestService.doPut(path, this.consulta.value).subscribe((response: any) => {
         if(response._id) {
+          this.resetearForm()
+          this.obtenerConsultas()
           Swal.fire("OK", "Consulta actualizada correctamente", "success")
         } else {
           Swal.fire("Error", response.error, "error");
@@ -122,6 +124,7 @@ export class ConsultasComponent implements OnInit {
     if(this.consulta.valid) {
       this.apiRestService.doPost(this.urlConsultas, this.consulta.value).subscribe((response: any) => {
         if(response._id) {
+          this.resetearForm()
           this.obtenerConsultas()
           Swal.fire("OK", "Consulta creada correctamente", "success")
         } else {

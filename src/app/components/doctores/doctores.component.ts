@@ -90,6 +90,7 @@ export class DoctoresComponent {
       const path = `${this.urlDoctores}/${this.doctorSeleccionado}`
       this.apiRestService.doPut(path, this.doctor.value).subscribe((response: any) => {
         if(response._id) {
+          this.obtenerDoctores()
           this.resetearForm()
           Swal.fire("OK", "Consulta actualizada correctamente", "success")
         } else {

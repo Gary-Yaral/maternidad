@@ -10,6 +10,7 @@ import { AccesoComponent } from './components/acceso/acceso.component';
 import { SistemaComponent } from './components/sistema/sistema.component';
 import { AccesoGuard } from './guards/acceso.guard';
 import { SistemaGuard } from './guards/sistema.guard';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -56,9 +57,17 @@ const routes: Routes = [
       {
         path: "recien-nacidos",
         component: RecienNacidosComponent
+      },
+      {
+        path: "**",
+        component: NotFoundComponent
       }
     ]
   },
+  {
+    path: "**",
+    component: NotFoundComponent
+  }
 
 ];
 

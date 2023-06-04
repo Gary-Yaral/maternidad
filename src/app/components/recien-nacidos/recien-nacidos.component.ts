@@ -61,10 +61,10 @@ export class RecienNacidosComponent {
   ) {}
 
   ngOnInit(): void {
-    this.obtenerNacimientoes()
+    this.obtenerNacimientos()
   }
 
-  obtenerNacimientoes() {
+  obtenerNacimientos() {
     this.apiRestService.doGet(this.urlNacimientos).subscribe((response: any) => {
       this.nacimientos = response
       this.nacimientos.map((nacimiento:any) => {
@@ -112,7 +112,7 @@ export class RecienNacidosComponent {
       const path = `${this.urlNacimientos}/${this.nacimientoSeleccionada}`
       this.apiRestService.doPut(path, this.nacimiento.value).subscribe((response: any) => {
         this.resetearForm()
-        this.obtenerNacimientoes()
+        this.obtenerNacimientos()
         if(response._id || response.message) {
           Swal.fire("OK", "Nacimiento actualizado correctamente", "success")
         } else {
@@ -142,7 +142,8 @@ export class RecienNacidosComponent {
     if(this.nacimiento.valid) {
       this.apiRestService.doPost(this.urlNacimientos, this.nacimiento.value).subscribe((response: any) => {
         if(response._id || response.message) {
-          this.obtenerNacimientoes()
+          this.obtenerNacimientos()
+          this.resetearForm()
           Swal.fire("OK", "Nacimiento creado correctamente", "success")
         } else {
           Swal.fire("Error", response.error, "error");
@@ -168,7 +169,7 @@ export class RecienNacidosComponent {
         const path = `${this.urlNacimientos}/${idNacimiento}`
         this.apiRestService.doDelete(path).subscribe((response: any) => {
           if(response.message) {
-            this.obtenerNacimientoes()
+            this.obtenerNacimientos()
             this.resetearForm()
             Swal.fire("Eliminado", response.message, "success")
           } else {

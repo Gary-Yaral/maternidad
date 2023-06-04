@@ -82,6 +82,7 @@ export class PacientesComponent {
       const path = `${this.urlPacientes}/${this.pacienteSeleccionado}`
       this.apiRestService.doPut(path, this.paciente.value).subscribe((response: any) => {
         if(response._id) {
+          this.obtenerPacientes()
           this.resetearForm()
           Swal.fire("OK", "Consulta actualizada correctamente", "success")
         } else {
@@ -111,6 +112,7 @@ export class PacientesComponent {
     if(this.paciente.valid) {
       this.apiRestService.doPost(this.urlPacientes, this.paciente.value).subscribe((response: any) => {
         if(response._id) {
+          this.resetearForm()
           this.obtenerPacientes()
           Swal.fire("OK", "Paciente agregado correctamente", "success")
         } else {
